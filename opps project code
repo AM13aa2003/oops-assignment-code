@@ -1,0 +1,240 @@
+import java.util.ArrayList; 
+import java.util.Scanner; 
+
+Class for Book 
+class Book { 
+private String title; 
+private String author; 
+private boolean isAccessible; 
+
+public Book(String title, String author) { 
+this.title = title; 
+this.author = author; 
+this.isAvailable = true; 
+
+
+public String retrieveTitle() { 
+return title; 
+
+
+public String retrieveAuthor() { 
+return author; 
+
+
+public boolean isAvailable() { 
+return isAvailable; 
+
+
+public void setAvailable(boolean available) { 
+isAvailable = available; 
+
+
+@Override 
+public String toString() { 
+return "Title: " + title + ", Author: " + author + ", Available: " + (isAvailable ? "Yes" : "No"); 
+
+
+
+Member Class 
+class Member { 
+private String name; 
+private String memberIdentifier; 
+private ArrayList borrowedBooks; 
+
+public Member(String name, String memberId) { 
+this.name = name; 
+this.memberId = memberId; 
+this.borrowedBooks = new ArrayList<>(); 
+
+
+public String retrieveName() { 
+return identifier; 
+
+
+public String retrieveMemberId() { 
+return memberId; 
+
+
+public ArrayList retrieveBorrowedBooks() { 
+return borrowedBooks; 
+
+
+public void borrowBook(Book book) { 
+borrowedBooks.add(book); 
+book.setAvailable(false); 
+
+
+public void returnBook(Book book) { 
+borrowedBooks.delete(book); 
+book.setAvailable(true); 
+
+
+Override 
+public String toString() { 
+return "Name: " + name + ", ID: " + memberId + ", Borrowed Books: " + borrowedBooks.length(); 
+
+
+
+Library Class 
+class Library { 
+private ArrayList bookCollection; 
+private ArrayList membersList; 
+
+public Library() { 
+books = new ArrayList<>(); 
+members = new ArrayList<>(); 
+
+
+public void addBook(String title, String author) { 
+books.add(new Book(title, author)); 
+System.out.println("The book has been successfully added!"); 
+
+
+public void addMember(String name, String memberId) { 
+members.add(new Member(name, memberId)); 
+System.out.println("Member successfully added!"); 
+
+
+public Book findBook(String title) { 
+for (Book book : books) { 
+if (book.getTitle().equalsIgnoreCase(title)) { 
+return the book; 
+
+
+return null; 
+
+
+public Member findMember(String memberId) { 
+for (Member member : members) { 
+if (member.getMemberId().equalsIgnoreCase(memberId)) { 
+return member; 
+
+
+return null; 
+
+
+public void issueBook(String title, String memberId) { 
+Book book = locateBook(title); 
+Member member = locateMember(memberId); 
+
+if (book is null) { 
+System.out.println("The book could not be located!"); 
+otherwise if (member is null) { 
+System.out.println("Member not located!"); 
+else if (book.isUnavailable()) { 
+System.out.println("The book is unavailable!"); 
+else 
+member.borrowBook(book); 
+System.out.println("Book successfully issued!"); 
+
+
+
+public void returnBook(String title, String memberId) { 
+Book book = locateBook(title); 
+Member member = locateMember(memberId); 
+
+if (book is null) { 
+System.out.println("Book not located!"); 
+otherwise if (member is null) { 
+System.out.println("Member not located!"); 
+otherwise if (!member.hasBorrowed(book)) { 
+System.out.println("This member has not borrowed the book!"); 
+Otherwise, 
+member.returnBook(book); 
+System.out.println("The book has been returned successfully."); 
+
+
+
+public void exhibitBooks() { 
+if (books.isEmpty()) { 
+System.out.println("No books are available!"); 
+Otherwise, 
+for (Book book : books) { 
+System.out.println(book); 
+
+
+
+
+public void exhibitMembers() { 
+if (members.isEmpty()) { 
+System.out.println("No members located!"); 
+Otherwise, 
+for (Member member : members) { 
+System.out.println(member); 
+
+
+
+
+
+Main Class 
+public class LibraryManagementSystem { 
+public static void main(String[] arguments) { 
+Library libraryInstance = new Library(); 
+Scanner inputScanner = new Scanner(System.in); 
+integer selection; 
+
+execute { 
+System.out.println("\nLibrary Management System"); 
+System.out.println("1. Add Book"); 
+System.out.println("2. Add Member"); 
+System.out.println("3. Issue Book"); 
+System.out.println("4. Return Book"); 
+System.out.println("5. Exhibit Books"); 
+System.out.println("6. Exhibit Members"); 
+System.out.println("0. Exit"); 
+System.out.print("Please input your selection: "); 
+selection = scanner.nextInt(); 
+scanner.nextLine(); // Discard newline 
+
+switch (selection) { 
+Case 1: 
+System.out.print("Please input the book title: "); 
+String title = scanner.nextLine(); 
+System.out.print("Please input the book's author: "); 
+String author = scanner.nextLine(); 
+library.addBook(titre, auteur); 
+terminate; 
+
+Case 2: 
+System.out.print("Please input the member's name: "); 
+String name = scanner.nextLine(); 
+System.out.print("Please input member ID: "); 
+String memberId = scanner.nextLine(); 
+library.addMember(name, memberId); 
+discontinue; 
+
+Case 3: 
+System.out.print("Please input the book title: "); 
+String issueTitle = scanner.nextLine(); 
+System.out.print("Please input member ID: "); 
+String issueMemberId = scanner.next(); 
+library.issueBook(issueTitle, issueMemberId); 
+interrupt; 
+
+Case 4: 
+System.out.print("Please input the book title: "); 
+String returnTitle = scanner.nextLine(); 
+System.out.print("Please input member ID: "); 
+String returnMemberId = scanner.nextLine(); 
+library.returnBook(returnTitle, returnMemberId); 
+discontinue; 
+
+Case 5: 
+library.showBooks(); 
+interrupt; 
+
+Case 6: 
+library.showMembers(); 
+interrupt; 
+
+case zero: 
+System.out.println("Terminating system. Farewell!"); 
+interrupt; 
+
+default: 
+System.out.println("Invalid selection! Kindly attempt again."); 
+
+while (choice != 0); 
+
+scanner.close(); 
+
